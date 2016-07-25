@@ -1,0 +1,3 @@
+recursive-include nidm/templates *
+recursive-include nidm/static *
+recursive-include nidm/script *
