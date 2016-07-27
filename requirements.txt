@@ -1,0 +1,6 @@
+numpy
+flask
+gitpython
+pokemon
+xmltodict
+flask-restful

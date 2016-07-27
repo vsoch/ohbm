@@ -23,19 +23,18 @@ class Planner():
                 if arg_value != None:
                     url = "%s&%s=%s" %(url,arg_name,arg_value)
         url = "%s&apiKey=%s" %(url,self.api.key)
-        result = get_result(url)
+        return get_url(url)
  
 
     def getActivities(self,plannerID=None,activityID=None,startsOn=None,startsOnOrAfter=None,startsOnOrBefore=None,
                            insertedOn=None,insertedOnOrAfter=None,insertedOnOrBefore=None):
         '''getActivities
-        Returns an XML payload containing activity details. This payload includes the activity’s title, codes,
+        Returns an XML payload containing activity details. This payload includes the activity's title, codes,
         start/end dates, description, location, and ACCME PARS information. This payload also contains a
-        listing of the activity’s public role assignments.
+        listing of the activity's public role assignments.
         Sample Request URL: http://.../?do=cnt.getservice&service=getActivities
 
         Parameter Options:
-        :param apiKey: Valid API key
         :param plannerID: Numeric identifier for a valid planner. Use this parameter to request the details of a single
         planner.
         :param activityID: Numeric identifier for a valid activity. Use this this parameter to request the details of a
@@ -73,16 +72,15 @@ class Planner():
 
     def getActivity(self,plannerID,activityID):
         '''getActivity
-        Returns an XML payload containing an activity’s details. This payload includes the activity’s title,
+        Returns an XML payload containing an activity's details. This payload includes the activity's title,
         codes, start/end dates, description, location, and ACCME PARS information. This payload also
-        contains a listing of the activity’s public role assignments and event (if the activity is one-to-one)
+        contains a listing of the activity's public role assignments and event (if the activity is one-to-one)
         Sample Request URL: http://.../?do=cnt.getservice&service=getActivity
 
         Parameter Options:
-        :param apiKey: Valid API key
-        :param plannerID: Numeric identifier for a valid planner. Use this parameter to request the details of a single
+        :param *plannerID: Numeric identifier for a valid planner. Use this parameter to request the details of a single
         planner.
-        :param activityID: Numeric identifier for a valid activity. Use this this parameter to request the details of a
+        :param *activityID: Numeric identifier for a valid activity. Use this this parameter to request the details of a
         single activity.
         '''
         url = "%s/?do=cnt.getservice&service=getActivity" %(self.api.base)

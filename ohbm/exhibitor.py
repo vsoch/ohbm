@@ -23,7 +23,7 @@ class Exhibitor():
                 if arg_value != None:
                     url = "%s&%s=%s" %(url,arg_name,arg_value)
         url = "%s&apiKey=%s" %(url,self.api.key)
-        result = get_url(url)
+        return get_url(url)
  
 
     def getExhibitors(self):
@@ -47,8 +47,7 @@ class Exhibitor():
         Sample Request URL: http://.../?do=cnt.getservice&service=getExhibitor
 
         Parameter Options:
-        :param apiKey: Valid API key
-        :param exhibitorID: Numeric value of an exhibitor
+        :param *exhibitorID: Numeric value of an exhibitor
         '''
         url = "%s/?do=cnt.getservice&service=getExhibitor" %(self.api.base)
         args = {"exhibitorID":exhibitorID}
@@ -74,7 +73,7 @@ class Exhibitor():
         return ordered_to_dict(result)
 
 
-    def getExhibitorSearchResults(self,searchText,categoryID=None):
+    def getExhibitorSearchResults(self,searchText=None,categoryID=None):
         '''getExhibitorSearchResults
         Returns an XML payload containing an exhibitor listing. This data set returned is smaller than the
         getExhibitors request and intend for listing results. Use the result in combination with the getExhibitor
@@ -83,7 +82,6 @@ class Exhibitor():
 
         Parameter Options:
 
-        :param *apiKey: Valid API key
         :param searchText: Text string used to perform a general search of the events. This parameter is used to find
         param matches in the title, description, objectives or speaker names.
         :param categoryID: Numeric value containing a valid category. Use the 'getSearchOptions' call to obtain a

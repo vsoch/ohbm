@@ -10,12 +10,11 @@ are exposed.
 '''
 
 from ohbm.settings import access_token, base #for development only
-from ohbm.utils import get_result, ordered_to_dict
-from pokemon.skills import get_avatar
+from pokemon.skills import get_avatar, get_ascii
 
 # Imports for different function classes
 from ohbm.categories import Categories
-from ohbm.exhibitors import Exhibitor
+from ohbm.exhibitor import Exhibitor
 from ohbm.abstracts import Abstracts
 from ohbm.attendees import Attendees
 from ohbm.auth import Authenticate
@@ -24,43 +23,35 @@ from ohbm.planner import Planner
 from ohbm.system import System
 from ohbm.events import Events
 
-# Third party
-import tempfile
-import shutil
-import numpy
-import stat
-import uuid
-import json
 import sys
-import os
-import re
+
+# Base URL, likely for testing
+base = "https://ww5.aievolution.com/hbm1601"
 
 class Api():
 
-    def __init__(self,access_token=None,base_url=None):
+    def __init__(self,access_token=None):
 
         # For development only - should return error without one.
         if access_token == None:
-            self.key = access_token
+            message="Please specify an access_token!"
+            get_ascii(name="charmander",message=message)
+            sys.exit(1)
         else:
             self.key = access_token
 
         # Alert the user we are good, show pokemon avatar
         get_avatar(access_token,include_name=False)
         print("\nWelcome, OHBM Trainer!")
-
-        if base_url == None:
-            self.base = base
-        else:
-            self.base = base_url
+        self.base = base
 
         # Instantiate each class
-        #self.Abstracts = Abstracts(api=self)
-        #self.Attendees = Attendees(api=self)
-        #self.Authenticate = Authenticate(api=self)
+        self.Abstracts = Abstracts(api=self)
+        self.Attendees = Attendees(api=self)
+        self.Authenticate = Authenticate(api=self)
         self.Categories = Categories(api=self)
         self.Events = Events(api=self)
-        #self.Exhibitor = Exhibitor(api=self)
-        #self.Planner = Planner(api=self)
-        #self.Roomset = Roomset(api=self)
-        #self.System = System(api=self)
+        self.Exhibitor = Exhibitor(api=self)
+        self.Planner = Planner(api=self)
+        self.Roomset = Roomset(api=self)
+        self.System = System(api=self)

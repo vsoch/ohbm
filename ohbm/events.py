@@ -92,7 +92,6 @@ class Events():
         Sample Request URL: http://.../?do=cnt.getservice&service=getEventSearchResults
         
         Parameter Options:
-        :param apiKey: Valid API key
         :param searchText: Text string used to perform a general search of the events. This parameter is used to find
         matches in the title, description, objectives or speaker names.
         :param categoryID: Numeric value containing a valid category. Use the 'getSearchOptions' call to obtain a
@@ -134,7 +133,6 @@ class Events():
         Sample Request URL: http://.../?do=cnt.getservice&service=getEventsCreditsSummary
         
         Parameter Options:
-        :param apiKey: Valid API key
         :param statusFlag: Valid values: 1-Active; 0-Inactive; -1-All; Used to indicate if the event is active or
         inactive. Generally inactive events are events that have been cancelled or removed by the client.
         :param publicUseFlag: Valid values: 1=Public; 0=Private; -1=All; Used to determine the types of events to
@@ -145,7 +143,7 @@ class Events():
         passing the parameter via the url will override the site setting parameter.
         :param categoryID: Numeric value; Use the 'getCategories' REST call to pull a list of valid categories.
         :param plannerID: Numeric value containing a valid planner.
-        :param startsOnDate: Date value containing a valid date. Use the ‘getSearchOptions’ call to obtain a valid list
+        :param startsOnDate: Date value containing a valid date. Use the 'getSearchOptions' call to obtain a valid list
 of dates.
         '''
         url = "%s/?do=cnt.getservice&service=getEventsCreditsSummary" %(self.api.base)
@@ -166,8 +164,7 @@ of dates.
         Returns an XML payload containing the credit details of a single event.
         Sample Request URL: http://.../?do=cnt.getservice&service=getEventCreditsSummary
         Parameter Options:
-        :param apiKey: Valid API key
-        :param eventID: Numeric value of an event.
+        :param *eventID: Numeric value of an event.
         '''
         url = "%s/?do=cnt.getservice&service=getEventCreditsSummary" %(self.api.base)
         args = {"eventID":eventID}
@@ -190,7 +187,6 @@ of dates.
         Sample Request URL: http://.../?do=cnt.getservice&service=getEventsCreditsByRegTypeSummary
 
         Parameter Options:
-        :param *apiKey: Valid API key
         :param statusFlag: Valid values: 1-Active; 0-Inactive; -1-All; Used to indicate if the event is active or
         inactive. Generally inactive events are events that have been cancelled or removed by the client.
         :param publicUseFlag: Valid values: 1=Public; 0=Private; -1=All; Used to determine the types of events to
@@ -216,13 +212,12 @@ of dates.
 
 
     def getEventCreditsByRegTypeSummary(self,eventID):
-        '''
-        service=getEventCreditsByRegTypeSummary
+        '''getEventCreditsByRegTypeSummary
         Returns an XML payload containing the credit details grouped by registration type of a single event.
         Sample Request URL: http://.../?do=cnt.getservice&service=getEventCreditsByRegTypeSummary
         Parameter Options:
-        *apiKey: Valid API key
-        *eventID: Numeric value of an event.
+        :param *apiKey: Valid API key
+        :param *eventID: Numeric value of an event.
         '''
         url = "%s/?do=cnt.getservice&service=getEventCreditsByRegTypeSummary" %(self.api.base)
         args = {"eventID":eventID}

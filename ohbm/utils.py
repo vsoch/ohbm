@@ -51,7 +51,6 @@ def parse_item(result,item):
     two levels (['events']['event'] see parse_items.
     :param item: the name of the item (eg, event,exhibitor)
     '''
-    item = item.lower()
     if item in result:
         print("Found %s!" %(item))
         result = result[item]
@@ -67,7 +66,6 @@ def parse_items(result,item):
     one levels (['event'] see parse_item.
     :param item: the name of the item (eg, event,exhibitor)
     '''
-    item = item.lower()
     items = '%ss' %(item)
     if items in result:
         if item in result[items]:
@@ -76,3 +74,10 @@ def parse_items(result,item):
     else:
         print("No %s found." %(items))
     return ordered_to_dict(result)
+
+
+def capitalize(word):
+    '''capitalize an input word.
+    :param word: the string to capitalize
+    '''
+    return word.upper()

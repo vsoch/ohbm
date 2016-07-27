@@ -23,7 +23,8 @@ class Categories():
                 if arg_value != None:
                     url = "%s&%s=%s" %(url,arg_name,arg_value)
         url = "%s&apiKey=%s" %(url,self.api.key)
-        result = get_url(url)
+        return get_url(url)
+
  
     def getCategories(self,categoryTypeID=None,includeAdminOnlyCategories=None):
         '''getCategories
@@ -32,7 +33,6 @@ class Categories():
         Sample Request URL: http://.../?do=cnt.getservice&service=getCategories
         
         Parameter Options:
-        :param *apiKey: Valid API key
         :param categoryTypeID: Integer valid values: 1= Event, 2=Exhibitor & 3=Abstract If
         not provided the system defaults to sending Event categories.
         :param includeAdminOnlyCategories: 0 or 1 (represents true or false).
